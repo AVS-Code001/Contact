@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="nav-popup" id="navPopup">
+        <ul>
+            <li class="list active" id="home">
+                <a href="http://localhost:7700/index.html"><span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                  <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list" id="about">
+                <a href="http://localhost:7700/ABOUT%20SECTION%20/index.html"><span class="icon"><ion-icon name="information-circle-outline"></ion-icon></span>
+                  <span class="text">About</span>
+                </a>
+            </li>
+            <li class="list" id="resume">
+                <a href="http://localhost:7700/Resume%20section%20/index.html"><span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                  <span class="text">Resume</span>
+                </a>
+            </li>
+            <li class="list" id="contact">
+                <a href="http://localhost:7700/Contact%20Section%20/index.html"><span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                  <span class="text">Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="header">
+        <img src="AVS.png" alt="Profile Picture" class="profile-pic" id="navProfile">
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="#" class="go-back">Go back</a>
+            <div class="contact-wrapper">
+                <section class="contact-form">
+                    <h1>Here to <span class="highlight">help</span></h1>
+                    <form id="contact-form">
+                        <label for="full-name">Full name*</label>
+                        <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+
+                        <label for="email">Email address*</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                        <label for="contact-number">Contact number</label>
+                        <input type="text" id="contact-number" name="contact-number" placeholder="Enter your contact number">
+
+                        <label for="message">Message*</label>
+                        <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+
+                        <button type="submit" class="send-message">Send message</button>
+                    </form>
+                </section>
+
+                <section class="newsletter">
+                    <h2>Join me to my adventure </h2>
+                    <p>Hey, Aaron is here. If you want to know more about me, just ask, okay?Add your details so I can provide you with the latest updates bye bye👋</p>
+                    <form id="newsletter-form">
+                        <label for="newsletter-email">Email Address</label>
+                        <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Enter your email address">
+                        <button type="submit" class="sign-up">Sign up</button>
+                    </form>
+                    <div class="contact-info">
+
+                        <p>Email: Saysonaaron555@gmail.com</p>
+                        <p>Phone: +63(09260354334) </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <div class="logo" id="logo">
+        <img src="Avs.png" alt="Logo">
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navProfile = document.getElementById('navProfile');
+            const navPopup = document.getElementById('navPopup');
+            const list = document.querySelectorAll('.list');
+
+            navProfile.addEventListener('click', () => {
+                navPopup.classList.toggle('active');
+            });
+
+            list.forEach((item) => item.addEventListener('click', function() {
+                list.forEach((item) => item.classList.remove('active'));
+                this.classList.add('active');
+            }));
+
+            emailjs.init("F6Pit_0VNLi25EKoH");  // Replace "YOUR_USER_ID" with your actual EmailJS user ID
+
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                emailjs.sendForm('service_05me09j', 'template_74ei4ol', this)
+                    .then(function() {
+                        alert('Your message has been sent!');
+                    }, function(error) {
+                        console.log('Failed to send message:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
